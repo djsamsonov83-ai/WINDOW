@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>ЗАСТЕКЛИ ДОМ</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{--y:#ffd54a;--c:#4fc3f7;--p:#ff5fa2;--d:#140a33;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{height:100%;margin:0}
+body{color:#fff;font-family:'Press Start 2P',ui-monospace,Menlo,monospace;font-weight:700;overflow:hidden;touch-action:manipulation;image-rendering:pixelated;
+background:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(2px 2px at 90px 80px,#ffd54a,transparent),radial-gradient(2px 2px at 150px 20px,#fff,transparent),radial-gradient(2px 2px at 60px 140px,#4fc3f7,transparent),radial-gradient(2px 2px at 170px 120px,#fff,transparent),linear-gradient(#14082e,#3a1c71 55%,#d76d77 88%,#ffaf7b);background-size:200px 200px,200px 200px,200px 200px,200px 200px,200px 200px,100% 100%}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0004 0 2px,transparent 2px 4px);z-index:9}
+.s{display:none;height:100%;flex-direction:column;align-items:center;padding:14px;gap:12px;text-align:center;position:relative;z-index:1}
+.s.on{display:flex}
+h1{margin:14px 0 0;font-size:24px;line-height:1.4;color:var(--y);text-shadow:4px 4px 0 #e0431f,8px 8px 0 var(--d)}
+.sub{font-size:10px;line-height:1.7;color:var(--c)}
+.px{border:0;box-shadow:0 -4px 0 0 #fff,0 4px 0 0 #fff,-4px 0 0 0 #fff,4px 0 0 0 #fff,8px 8px 0 0 #0008}
+input{width:100%;max-width:300px;font:inherit;font-size:14px;padding:14px;background:var(--d);color:var(--y);text-align:center;text-transform:uppercase;outline:0;user-select:text;margin:6px 0}
+input::placeholder{color:#7d6bb5}
+.btn{font:inherit;font-size:14px;padding:16px 18px;background:var(--y);color:var(--d);width:100%;max-width:300px;margin-top:4px;animation:bl 1s steps(2) infinite}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 4px #fff}
+@keyframes bl{50%{background:#fff}}
+.err{color:var(--p);font-size:9px;min-height:12px}
+.hint{font-size:8px;line-height:1.8;max-width:300px;color:#fff}
+.board{width:100%;max-width:320px;background:#140a33ee;padding:12px;text-align:left;font-size:9px;line-height:2.2;margin-top:6px}
+.board b{display:block;text-align:center;color:var(--y);font-size:10px;margin-bottom:4px}
+.board div{display:flex;justify-content:space-between;gap:6px}
+.board div:nth-of-type(1){color:var(--y)}.board div:nth-of-type(2){color:var(--c)}.board div:nth-of-type(3){color:var(--p)}
+.board span:first-child{overflow:hidden;white-space:nowrap}
+.city{position:absolute;left:0;right:0;bottom:0;height:90px;display:flex;align-items:flex-end;justify-content:space-around;z-index:0;pointer-events:none}
+.bl{width:11%;background:linear-gradient(0deg,#140a33 6px,transparent 6px) 0 0/16px 16px,linear-gradient(90deg,#140a33 6px,var(--y) 6px 12px,#140a33 12px) 0 0/16px 16px}
+.hud{display:flex;justify-content:space-between;width:100%;max-width:420px;font-size:14px;color:var(--y);text-shadow:2px 2px 0 var(--d);padding:0 4px}
+#tm.lo{color:var(--p);animation:bl2 .5s steps(2) infinite}@keyframes bl2{50%{opacity:.2}}
+.bar{width:100%;max-width:420px;height:16px;background:var(--d);padding:3px;position:relative}
+.bar i{display:block;height:100%;width:100%;background:var(--y)}
+.bar::after{content:"";position:absolute;inset:3px;background:repeating-linear-gradient(90deg,transparent 0 10px,var(--d) 10px 12px)}
+.tower{width:120px;height:82px;display:flex;flex-direction:column;align-items:center;overflow:hidden;flex:none;padding-top:4px}
+.roof{width:20px;height:16px;border-left:4px solid #fff;position:relative;flex:none}
+.roof::before{content:"";position:absolute;left:0;top:0;width:16px;height:8px;background:var(--p)}
+.fl{width:96px;height:12px;flex:none;background:linear-gradient(0deg,#a4432b 3px,transparent 3px) 0 0/16px 12px,linear-gradient(90deg,#a4432b 3px,var(--c) 3px 13px,#a4432b 13px) 0 0/16px 12px;border-top:2px solid #6b2a18;animation:pop .3s steps(3)}
+@keyframes pop{from{transform:scale(1.3,1.6);filter:brightness(2)}}
+.field{flex:1;width:100%;max-width:420px;display:grid;gap:12px;padding:14px;align-content:stretch;background:#a4432b linear-gradient(#0003 2px,transparent 2px) 0 0/32px 16px,linear-gradient(90deg,#0003 2px,transparent 2px) 0 0/32px 16px;box-shadow:0 0 0 4px #6b2a18,0 0 0 8px #fff,8px 12px 0 8px #0008}
+.w{position:relative;background:#0a1230 radial-gradient(2px 2px at 30% 30%,#fff8,transparent),radial-gradient(2px 2px at 70% 65%,#fff8,transparent);box-shadow:0 0 0 4px #f5e6c8,0 0 0 8px #7a4a2a,inset 4px 4px 0 #0008}
+.w.c::after{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 47%,#fff 47% 53%,transparent 53%) 0 0/50% 50%,linear-gradient(-45deg,transparent 47%,#fff 47% 53%,transparent 53%) 100% 100%/50% 50%;opacity:.7}
+.w.h{background:#1e5c8a}
+.w.d{pointer-events:none;background:linear-gradient(135deg,transparent 22%,#fffd 22% 32%,transparent 32% 42%,#fff9 42% 47%,transparent 47%),var(--c);animation:pop .25s steps(3)}
+.w.d::before{content:"";position:absolute;left:0;right:0;top:calc(50% - 2px);height:4px;background:#f5e6c8}
+.pt{position:fixed;width:8px;height:8px;background:var(--y);z-index:5;pointer-events:none;animation:fly .5s steps(6) forwards}
+@keyframes fly{to{transform:translate(var(--x),var(--y));opacity:0}}
+#pu{position:fixed;left:0;right:0;top:38%;text-align:center;font-size:24px;color:var(--y);text-shadow:4px 4px 0 #e0431f;z-index:6;pointer-events:none;display:none}
+#pu.on{display:block;animation:up .7s steps(7) forwards}
+@keyframes up{to{transform:translateY(-60px);opacity:0}}
+.big{font-size:56px;color:var(--y);text-shadow:4px 4px 0 #e0431f,8px 8px 0 var(--d)}
+</style></head><body>
+<div class="s on" id="s1">
+ <h1>ЗАСТЕКЛИ<br>ДОМ</h1>
+ <div class="sub">90 СЕКУНД.<br>КАК ВЫСОКО ТЫ ПОДНИМЕШЬСЯ?</div>
+ <input class="px" id="nm" maxlength="16" placeholder="ТВОЁ ИМЯ" autocomplete="off">
+ <div class="err" id="er"></div>
+ <button class="btn px" id="go">▶ НАЧАТЬ ИГРУ</button>
+ <div class="hint">Застекли все окна этажа и поднимайся выше. Чем выше — тем сложнее!</div>
+ <div class="board px" id="b1"></div>
+ <div class="city" id="ct"></div>
+</div>
+<div class="s" id="s2">
+ <div class="hud"><span id="fl">ЭТАЖ 1</span><span id="tm">90</span></div>
+ <div class="bar px"><i id="pb"></i></div>
+ <div class="tower" id="tw"><div class="roof" id="rf0"></div></div>
+ <div class="field" id="fd"></div>
+</div>
+<div class="s" id="s3">
+ <h1 style="font-size:20px">GAME OVER</h1>
+ <div class="sub" id="rn"></div>
+ <div class="big" id="rf"></div>
+ <div class="sub">ЭТАЖЕЙ ЗАСТЕКЛЕНО</div>
+ <div class="board px" id="b3"></div>
+ <button class="btn px" id="again">▶ ЕЩЁ РАЗ</button>
+</div>
+<div id="pu"></div>
+<script>
+const $=id=>document.getElementById(id),KEY='zd_board';
+let name='',floor=1,done=0,end=0,raf,shuf,wins=[],ac;
+function beep(f,d,t){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t||'square';o.frequency.value=f;g.gain.value=.04;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+(d||.06))}catch(e){}}
+function show(i){for(let k=1;k<=3;k++)$('s'+k).classList.toggle('on',k===i)}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+function save(b){try{localStorage.setItem(KEY,JSON.stringify(b))}catch(e){}}
+function draw(el,me){const b=load().slice(0,8);el.innerHTML='<b>★ РЕКОРДЫ ★</b>'+(b.length?b.map((r,i)=>`<div style="${r.t===me?'text-decoration:underline':''}"><span>${i+1}. ${r.n.replace(/</g,'')}</span><span>${r.f}</span></div>`).join(''):'<div>СТАНЬ ПЕРВЫМ!</div>')}
+function clean(v){return v.replace(/\s+/g,' ').trim().toUpperCase()}
+function start(){
+ const v=clean($('nm').value);
+ if(!v){$('er').textContent='ВВЕДИ ИМЯ';return}
+ if(!/^[A-ZА-ЯЁ0-9 \-_.]+$/.test(v)){$('er').textContent='ТОЛЬКО БУКВЫ И ЦИФРЫ';return}
+ name=v;$('er').textContent='';floor=1;done=0;
+ $('tw').innerHTML='<div class="roof" id="rf0"></div>';$('tm').classList.remove('lo');
+ show(2);beep(660,.15);end=performance.now()+90000;build();tick()}
+function build(){
+ const n=Math.min(2+floor,12),fd=$('fd');
+ fd.style.gridTemplateColumns='repeat('+(n<=4?2:3)+',1fr)';
+ fd.innerHTML='';wins=[];
+ for(let i=0;i<n;i++){const d=document.createElement('div');d.className='w';
+  d.hp=(floor>=5&&Math.random()<Math.min(.15+floor*.04,.5))?2:1;
+  if(d.hp>1)d.classList.add('c');
+  d.addEventListener('pointerdown',e=>{e.preventDefault();hit(d,e)});
+  fd.appendChild(d);wins.push(d)}
+ $('fl').textContent='ЭТАЖ '+floor;
+ clearInterval(shuf);
+ if(floor>=8)shuf=setInterval(()=>{wins.filter(w=>!w.classList.contains('d')).forEach(w=>w.style.order=Math.floor(Math.random()*20))},1400)}
+function spark(x,y){for(let i=0;i<8;i++){const p=document.createElement('div');p.className='pt';p.style.left=x+'px';p.style.top=y+'px';
+ const a=i*Math.PI/4;p.style.setProperty('--x',Math.round(Math.cos(a)*40)+'px');p.style.setProperty('--y',Math.round(Math.sin(a)*40)+'px');
+ if(i%2)p.style.background='#fff';document.body.appendChild(p);setTimeout(()=>p.remove(),520)}}
+function hit(d,e){
+ if(d.classList.contains('d'))return;
+ if(--d.hp>0){d.classList.remove('c');d.classList.add('h');beep(180,.08,'sawtooth');return}
+ d.classList.add('d');d.classList.remove('c');beep(880,.05);
+ spark(e.clientX,e.clientY);if(navigator.vibrate)navigator.vibrate(15);
+ if(wins.every(w=>w.classList.contains('d'))){
+  done++;const b=document.createElement('div');b.className='fl';$('tw').insertBefore(b,$('rf0').nextSibling);
+  const pu=$('pu');pu.textContent='ЭТАЖ '+floor+'!';pu.className='';void pu.offsetWidth;pu.className='on';
+  beep(1046,.08);setTimeout(()=>beep(1318,.12),90);
+  floor++;setTimeout(build,150)}}
+function tick(){
+ const left=Math.max(0,end-performance.now());
+ $('tm').textContent=Math.ceil(left/1000);$('pb').style.width=(left/900)+'%';
+ if(left<15000)$('pb').style.background='var(--p)';else $('pb').style.background='';
+ $('tm').classList.toggle('lo',left<10000);
+ if(left<=0)return finish();raf=requestAnimationFrame(tick)}
+function finish(){
+ cancelAnimationFrame(raf);clearInterval(shuf);beep(200,.4,'sawtooth');
+ const t=Date.now(),b=load();b.push({n:name,f:done,t});b.sort((a,c)=>c.f-a.f||a.t-c.t);save(b.slice(0,100));
+ $('rn').textContent=name;$('rf').textContent=done;draw($('b3'),t);show(3)}
+$('go').onclick=start;
+$('nm').addEventListener('keydown',e=>{if(e.key==='Enter')start()});
+$('again').onclick=()=>{draw($('b1'));show(1)};
+$('ct').innerHTML=[40,70,50,85,45,65,55,75].map(h=>`<div class="bl" style="height:${h}px"></div>`).join('');
+draw($('b1'));
+</script></body></html>
